@@ -5,25 +5,28 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OrderItem extends Model
+class Address extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'order_id',
-        'product_id',
-        'quantity',
-        'unit_price',
-        'total_amount',
+        'first_name',
+        'last_name',
+        'email',
+        'phone',
+        'street_address',
+        'city',
+        'zip_code',
     ];
 
     public function order()
     {
         return $this->belongsTo(Order::class);
-    }   
+    }
 
-    public function product()
+    public function getFullNameAttribute()
     {
-        return $this->belongsTo(Products::class);
+        return "{$this->first_name} {$this->last_name}";
     }
 }
