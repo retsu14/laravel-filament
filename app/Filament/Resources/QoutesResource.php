@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CustomerResource\Pages;
-use App\Filament\Resources\CustomerResource\RelationManagers;
-use App\Models\Customer;
+use App\Filament\Resources\QoutesResource\Pages;
+use App\Filament\Resources\QoutesResource\RelationManagers;
+use App\Models\Qoutes;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,18 +13,19 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CustomerResource extends Resource
+class QoutesResource extends Resource
 {
-    protected static ?string $model = Customer::class;
+    protected static ?string $model = Qoutes::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-banknotes';
+
+    protected static ?string $navigationGroup = 'Feature';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                 Forms\Components\TextInput::make('name')->required(),
-            Forms\Components\TextInput::make('email')->email()->required(),
+                //
             ]);
     }
 
@@ -33,15 +34,12 @@ class CustomerResource extends Resource
         return $table
             ->columns([
                 //
-                Tables\Columns\TextColumn::make('name'),
-            Tables\Columns\TextColumn::make('email'),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -50,10 +48,19 @@ class CustomerResource extends Resource
             ]);
     }
 
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageCustomers::route('/'),
+            'index' => Pages\ListQoutes::route('/'),
+            'create' => Pages\CreateQoutes::route('/create'),
+            'edit' => Pages\EditQoutes::route('/{record}/edit'),
         ];
     }
 }
