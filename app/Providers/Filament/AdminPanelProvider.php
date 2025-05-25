@@ -61,6 +61,12 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make()
                     ->label('Access')
             ])
+            ->maxContentWidth(
+                min(
+                    1024, 
+                    config('filament.layout.max_content_width', 1280)
+                )
+            ) 
             ->sidebarCollapsibleOnDesktop();
     }
 }
