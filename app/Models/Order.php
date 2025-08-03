@@ -26,10 +26,12 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     public function address()
     {
         return $this->belongsTo(Address::class);
     }
+
     public function items()
     {
         return $this->hasMany(OrderItem::class);

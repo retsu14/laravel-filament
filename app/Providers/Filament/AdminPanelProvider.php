@@ -27,7 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->brandName('Jahbless')
-            ->path('admin') 
+            ->path('admin')
             ->login()
             ->colors([
                 'primary' => Color::Blue,
@@ -59,14 +59,14 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make()
                     ->label('Feature'),
                 NavigationGroup::make()
-                    ->label('Access')
+                    ->label('Access'),
             ])
             ->maxContentWidth(
                 min(
-                    1024, 
+                    1024,
                     config('filament.layout.max_content_width', 1280)
                 )
-            ) 
+            )
             ->sidebarCollapsibleOnDesktop();
     }
 }

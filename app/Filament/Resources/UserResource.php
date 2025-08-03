@@ -21,7 +21,7 @@ class UserResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
     protected static ?string $navigationGroup = 'Access';
-    
+
     public static function form(Form $form): Form
     {
         return $form
@@ -35,7 +35,7 @@ class UserResource extends Resource
                         ->confirmed()
                         ->hiddenOn('edit')
                         ->minLength(8)
-                        ->dehydrateStateUsing(fn ($state) => !empty($state) ? bcrypt($state) : null)
+                        ->dehydrateStateUsing(fn ($state) => ! empty($state) ? bcrypt($state) : null)
                         ->visible(fn ($record) => $record === null),
                     Forms\Components\TextInput::make('password_confirmation')
                         ->password()
@@ -54,9 +54,9 @@ class UserResource extends Resource
                             'inactive' => 'Inactive',
                         ])
                         ->required(),
-                ])
+                ]),
             ]);
-            
+
     }
 
     public static function table(Table $table): Table
@@ -68,13 +68,13 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('role')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable(),
                 Tables\Columns\IconColumn::make('status')
-                ->boolean()
-                ->trueIcon('heroicon-o-check-circle')
-                ->falseIcon('heroicon-o-x-circle')
-                ->trueColor('success')
-                ->falseColor('danger')
-                ->getStateUsing(fn ($record) => $record->status === 'active')
-                ->label('Status'),
+                    ->boolean()
+                    ->trueIcon('heroicon-o-check-circle')
+                    ->falseIcon('heroicon-o-x-circle')
+                    ->trueColor('success')
+                    ->falseColor('danger')
+                    ->getStateUsing(fn ($record) => $record->status === 'active')
+                    ->label('Status'),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('role')
@@ -93,8 +93,7 @@ class UserResource extends Resource
                     ViewAction::make(),
                     EditAction::make(),
                     DeleteAction::make(),
-            ]),
-               
+                ]),
 
             ])
             ->bulkActions([
