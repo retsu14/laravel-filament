@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Qoutes;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Spatie\RouteAttributes\Attributes\Prefix;
 
+#[Prefix('api')]
 class QouteController extends Controller
 {
     // Handle POST /api/qoutes
